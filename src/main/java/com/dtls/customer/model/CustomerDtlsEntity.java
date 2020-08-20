@@ -17,7 +17,7 @@ public class CustomerDtlsEntity {
     private String address;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}

@@ -33,7 +33,7 @@ class CustomerDemoAppApplicationTests {
 		customerDtls.setFirstName("Robert");
 		customerDtls.setLastName("Portugal");
 		customerDtls.setAge(30);
-		customerDtls.setAddress("Banglore");
+		customerDtls.setAddress("Delhi");
 		ResponseEntity<CustomerDtlsEntity> customerDtlsEntity = customerDtlsController.createCustomerDtls(customerDtls);
 		assertNotNull(customerDtlsEntity);		
 	}
@@ -46,12 +46,12 @@ class CustomerDemoAppApplicationTests {
 	
 	@Test
 	public void testGetCustomerDtlsById() throws CustomerDtlsNotFoundException {
-		ResponseEntity<CustomerDtlsEntity> customerDtlsEntity = customerDtlsController.getCustomerDtlsById(2);
+		ResponseEntity<CustomerDtlsEntity> customerDtlsEntity = customerDtlsController.getCustomerDtlsById(1);
 		String customerfirstName = "";
 		if(!customerDtlsEntity.getBody().getFirstName().isEmpty()) {
 			customerfirstName = customerDtlsEntity.getBody().getFirstName();
 		}
-		assertEquals("Aaarya",customerfirstName);		
+		assertEquals("Ram",customerfirstName);		
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ class CustomerDemoAppApplicationTests {
 		ResponseEntity<CustomerDtlsEntity> customerDtlsEntity = customerDtlsController.getCustomerDtlsById(2);
 		CustomerDtlsEntity custDtls = customerDtlsEntity.getBody();
 		if (custDtls !=null) {
-			custDtls.setAddress("Guntur");
+			custDtls.setAddress("Chn");
 		}				
 		ResponseEntity<CustomerDtlsEntity> customerDtls = customerDtlsController.updateCustomerDtlsById(custDtls.getId(), custDtls);
 		
@@ -68,23 +68,23 @@ class CustomerDemoAppApplicationTests {
 	
 	@Test
 	public void testFindCustomersByFirstNameAndLastName() throws CustomerDtlsNotFoundException {
-		ResponseEntity<List<CustomerDtlsEntity>> customerDtls = customerDtlsController.getCustomerDtlsByFirstNameAndLastName("Anj", "pon");
+		ResponseEntity<List<CustomerDtlsEntity>> customerDtls = customerDtlsController.getCustomerDtlsByFirstNameAndLastName("Ram", "Sita");
 		String custAddress = "";
 		CustomerDtlsEntity custDtls = customerDtls.getBody().get(0);	
 		if(!custDtls.getAddress().isEmpty()) {
 			custAddress = custDtls.getAddress();
 		}
-		assertEquals("Mum",custAddress);	
+		assertEquals("Ayodhya",custAddress);	
 	}
 	
 	@Test
 	public void testFindCustomersByFirstNameOrLastName() throws CustomerDtlsNotFoundException {
-		ResponseEntity<List<CustomerDtlsEntity>> customerDtls = customerDtlsController.getCustomerDtlsByFirstNameOrLastName("Rohan", "abc");
+		ResponseEntity<List<CustomerDtlsEntity>> customerDtls = customerDtlsController.getCustomerDtlsByFirstNameOrLastName("Raj", "Pon");
 		String custAddress = "";
 		CustomerDtlsEntity custDtls = customerDtls.getBody().get(0);	
 		if(!custDtls.getAddress().isEmpty()) {
 			custAddress = custDtls.getAddress();
 		}
-		assertEquals("Pune",custAddress);	
+		assertEquals("Hyd",custAddress);	
 	}
 }
